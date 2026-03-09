@@ -61,6 +61,8 @@ npm run dev
 Acesse no navegador:
 Abra http://localhost:5173 (ou a porta indicada no terminal). Recomendamos utilizar o modo de inspeção do navegador (F12) e simular a visualização em um dispositivo móvel (ex: iPhone 12) para a melhor experiência UX.
 
+---
+
 👥 Integrantes do Grupo 11
 Wesley Sousa Cordeiro
 Rodrigo Antunes Carvalho Souza
