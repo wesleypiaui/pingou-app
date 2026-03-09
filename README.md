@@ -16,7 +16,7 @@ Wesley Sousa Cordeiro<br>
 
 
 ## 📌 Sobre o Projeto
-O **Pingou** é uma aplicação web mobile-first focada em transformar pequenos gastos cotidianos em reservas para metas específicas. Diferente de um gerenciador financeiro tradicional, o Pingou atua na **gestão de hábitos e recompensas psicológicas**, utilizando micro-interações para reduzir a fricção emocional de poupar.
+O **Pingou** é uma aplicação web mobile-first focada em transformar pequenos gastos cotidianos em reservas para metas específicas, criadas pelos próprios usuários. Diferente de um gerenciador financeiro tradicional, o Pingou atua na **gestão de hábitos e recompensas psicológicas**, utilizando microinterações para estimular o usuário a se sentir motivado a poupar.
 
 ---
 
