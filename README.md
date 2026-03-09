@@ -1,16 +1,17 @@
 # 💧 Pingou - Guarde dinheiro sem perceber
 
-**Projeto Integrador: Desenvolvimento de Sistemas Orientado a Dispositivos Móveis Baseados na Web** **Curso:** Tecnologia em Análise e Desenvolvimento de Sistemas (TADS) / TSI - Senac EAD  
+**Projeto Integrador: Desenvolvimento de Sistemas Orientado a Dispositivos Móveis Baseados na Web** 
+**Curso:** Tecnologia em Análise e Desenvolvimento de Sistemas (TADS) / TSI - Senac EAD  
 **Professor:** Gustavo Calixto  
 **Etapa:** 2ª Entrega - Prova de Conceito (PoC)
 
 👥 Integrantes do Grupo 11 <br>
-Wesley Sousa Cordeiro<br>
-Rodrigo Antunes Carvalho Souza<br>
-Tatiane Gomes dos Santos<br>
 Fabricio Portela Machado<br>
 Fernando Gabriel Ferreira<br>
 Pedro Henrique Borges da Silva<br>
+Rodrigo Antunes Carvalho Souza<br>
+Tatiane Gomes dos Santos<br>
+Wesley Sousa Cordeiro<br>
 ***
 
 
