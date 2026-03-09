@@ -150,7 +150,21 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Nunito', sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
+}
+
+/* Mobile touch optimizations */
+.tap-target,
+button,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
 }
 
 @layer utilities {

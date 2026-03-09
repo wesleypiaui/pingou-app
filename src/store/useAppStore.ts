@@ -135,4 +135,13 @@ export const useAppStore = create<AppState>((set, get) => ({
     }
     return null;
   },
+
+  resetAccount: () => {
+    localStorage.removeItem('pingou-state');
+    set({
+      goalName: '', goalAmount: 0, userName: '', userEmail: '',
+      onboardingDone: false, activeRules: [], totalSaved: 0,
+      streak: 0, lastPingDate: null, history: [],
+    });
+  },
 }));
