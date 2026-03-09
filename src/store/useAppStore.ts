@@ -32,6 +32,7 @@ export interface AppState {
   addPingo: (amount: number, rule: string) => void;
   getProgress: () => number;
   getMilestone: () => number | null;
+  resetAccount: () => void;
 }
 
 const loadState = () => {
