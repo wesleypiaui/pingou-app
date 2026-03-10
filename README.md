@@ -37,7 +37,7 @@ Para a construção desta PoC, o ambiente foi estruturado com as seguintes tecno
 
 * **Frontend:** React.js
 * **Backend:** Node.js 
-* **Banco de Dados:** PostgreSQL
+* **Banco de Dados:** SQLite
 
 
 
