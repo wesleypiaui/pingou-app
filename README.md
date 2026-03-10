@@ -1,4 +1,4 @@
-# 💧 Pingou - Guarde dinheiro sem perceber
+# 💧 Pingou - Guarde dinheiro sem perceber!
 
 **Projeto Integrador: Desenvolvimento de Sistemas Orientado a Dispositivos Móveis Baseados na Web** 
 **Curso:** Tecnologia em Análise e Desenvolvimento de Sistemas (TADS) / TSI - Senac EAD  
@@ -20,7 +20,7 @@ O **Pingou** é uma aplicação web mobile-first focada em transformar pequenos 
 
 ---
 
-## 🎯 Prova de Conceito (PoC) - Escopo da 2ª Entrega
+## 🎯 Prova de Conceito (POC) - Escopo da 2ª Entrega
 Revisitando o projeto da 1ª etapa, definimos que a nossa Prova de Conceito (PoC) focará na jornada de **"Acesso Inicial e Configuração Essencial"**. 
 
 **Justificativa:** Esta é a jornada core do produto. Para validar a proposta de valor do Pingou (simplicidade radical e redução de carga cognitiva), precisamos provar que o usuário consegue criar um "Cofre" (meta) e configurar uma "Regra de Economia" em poucos cliques, recebendo feedback visual imediato.
