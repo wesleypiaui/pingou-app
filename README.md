@@ -2,7 +2,7 @@
 
 **Projeto Integrador: Desenvolvimento de Sistemas Orientado a Dispositivos Móveis Baseados na Web** 
 **Curso:** Tecnologia em Análise e Desenvolvimento de Sistemas (TADS) / TSI - Senac EAD  
-**Professor:** Gustavo Calixto  
+**Professor:** Adriano Kleber Milanez  
 **Etapa:** 2ª Entrega - Prova de Conceito (PoC)
 
 👥 Integrantes do Grupo 05 <br>
