@@ -5,7 +5,7 @@
 **Professor:** Gustavo Calixto  
 **Etapa:** 2ª Entrega - Prova de Conceito (PoC)
 
-👥 Integrantes do Grupo 11 <br>
+👥 Integrantes do Grupo 05 <br>
 Fabricio Portela Machado<br>
 Fernando Gabriel Ferreira<br>
 Pedro Henrique Borges da Silva<br>
