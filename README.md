@@ -1,14 +1,13 @@
 # 💧 Pingou - Guarde dinheiro sem perceber!
 
-**Projeto Integrador: Desenvolvimento de Sistemas Orientado a Dispositivos Móveis Baseados na Web** 
+**Projeto Integrador: Análise de Soluções Integradas para Organizações** 
 **Curso:** Tecnologia em Análise e Desenvolvimento de Sistemas (TADS) / TSI - Senac EAD  
 **Professor:** Adriano Kleber Milanez  
-**Etapa:** 2ª Entrega - Prova de Conceito (PoC)
+**Etapa:** 2ª Entrega
 
 👥 Integrantes do Grupo 05 <br>
 Fabricio Portela Machado<br>
 Fernando Gabriel Ferreira<br>
-Pedro Henrique Borges da Silva<br>
 Rodrigo Antunes Carvalho Souza<br>
 Tatiane Gomes dos Santos<br>
 Wesley Sousa Cordeiro<br>
