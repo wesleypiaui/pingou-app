@@ -36,8 +36,19 @@ const RulesSetup = () => {
   const navigate = useNavigate();
   const { activeRules, toggleRule, completeOnboarding } = useAppStore();
 
-  const handleStart = () => {
-    completeOnboarding();
+  const [loading, setLoading] = useState(false);
+
+  const handleStart = async () => {
+    if (loading) return;
+    setLoading(true);
+    try {
+      await completeOnboarding();
+      toast.success('Tudo pronto! Bora pingar 💧');
+    } catch {
+      toast.error('Não conseguimos salvar suas regras. Tente de novo.');
+      setLoading(false);
+      return;
+    }
     navigate('/dashboard');
   };
 
@@ -98,11 +109,11 @@ const RulesSetup = () => {
 
         <motion.button
           onClick={handleStart}
-          disabled={activeRules.length === 0}
-          className="mt-8 w-full rounded-2xl bg-gradient-mint py-4 text-base font-bold text-primary-foreground shadow-mint disabled:opacity-40"
+          disabled={activeRules.length === 0 || loading}
+          className="mt-8 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-mint py-4 text-base font-bold text-primary-foreground shadow-mint disabled:opacity-40"
           whileTap={{ scale: 0.97 }}
         >
-          Começar a guardar 💧
+          {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : 'Começar a guardar 💧'}
         </motion.button>
       </motion.div>
     </div>
