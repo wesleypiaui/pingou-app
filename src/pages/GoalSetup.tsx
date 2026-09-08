@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import { useAppStore } from '@/store/useAppStore';
-import { Target, ArrowRight } from 'lucide-react';
+import { Target, ArrowRight, Loader2 } from 'lucide-react';
 
 const GoalSetup = () => {
   const navigate = useNavigate();
@@ -12,17 +13,43 @@ const GoalSetup = () => {
   const [goalAmount, setGoalAmount] = useState('');
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleGoalNext = () => {
-    if (!goalName.trim() || !goalAmount.trim()) return;
-    setGoal(goalName.trim(), parseFloat(goalAmount));
-    setStep('user');
+  const handleGoalNext = async () => {
+    if (!goalName.trim() || !goalAmount.trim() || loading) return;
+    const amount = parseFloat(goalAmount);
+    if (!amount || amount <= 0) {
+      toast.error('Informe um valor maior que zero.');
+      return;
+    }
+    setLoading(true);
+    try {
+      await setGoal(goalName.trim(), amount);
+      toast.success('Meta salva! 🎯');
+      setStep('user');
+    } catch {
+      toast.error('Não conseguimos salvar agora. Tente de novo.');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleFinish = () => {
-    if (!userName.trim() || !userEmail.trim()) return;
-    setUser(userName.trim(), userEmail.trim());
-    navigate('/rules-setup');
+  const handleFinish = async () => {
+    if (!userName.trim() || !userEmail.trim() || loading) return;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail.trim())) {
+      toast.error('Digite um e-mail válido.');
+      return;
+    }
+    setLoading(true);
+    try {
+      await setUser(userName.trim(), userEmail.trim());
+      toast.success('Cofre criado! 💰');
+      navigate('/rules-setup');
+    } catch {
+      toast.error('Não conseguimos criar seu cofre. Tente de novo.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
