@@ -116,11 +116,11 @@ const GoalSetup = () => {
 
             <motion.button
               onClick={handleGoalNext}
-              disabled={!goalName.trim() || !goalAmount.trim()}
+              disabled={!goalName.trim() || !goalAmount.trim() || loading}
               className="mt-8 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-mint py-4 text-base font-bold text-primary-foreground shadow-mint disabled:opacity-40"
               whileTap={{ scale: 0.97 }}
             >
-              Próximo <ArrowRight className="h-5 w-5" />
+              {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <>Próximo <ArrowRight className="h-5 w-5" /></>}
             </motion.button>
           </motion.div>
         ) : (
@@ -165,11 +165,11 @@ const GoalSetup = () => {
 
             <motion.button
               onClick={handleFinish}
-              disabled={!userName.trim() || !userEmail.trim()}
-              className="mt-8 w-full rounded-2xl bg-gradient-mint py-4 text-base font-bold text-primary-foreground shadow-mint disabled:opacity-40"
+              disabled={!userName.trim() || !userEmail.trim() || loading}
+              className="mt-8 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-mint py-4 text-base font-bold text-primary-foreground shadow-mint disabled:opacity-40"
               whileTap={{ scale: 0.97 }}
             >
-              Criar meu cofre 💰
+              {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : 'Criar meu cofre 💰'}
             </motion.button>
 
             <button
