@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import { useAppStore } from '@/store/useAppStore';
-import { Coffee, ArrowDownUp, CalendarCheck, Check } from 'lucide-react';
+import { Coffee, ArrowDownUp, CalendarCheck, Check, Loader2 } from 'lucide-react';
 
 const rules = [
   {
