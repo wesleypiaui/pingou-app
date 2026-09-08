@@ -1,11 +1,7 @@
 import { create } from 'zustand';
+import { api, type PingoEntry } from '@/services/api';
 
-export interface PingoEntry {
-  id: string;
-  amount: number;
-  rule: string;
-  date: string;
-}
+export type { PingoEntry };
 
 export interface AppState {
   // Onboarding
@@ -24,30 +20,25 @@ export interface AppState {
   lastPingDate: string | null;
   history: PingoEntry[];
 
-  // Actions
-  setGoal: (name: string, amount: number) => void;
-  setUser: (name: string, email: string) => void;
-  completeOnboarding: () => void;
+  // Actions (assíncronas — passam pela camada de serviços)
+  setGoal: (name: string, amount: number) => Promise<void>;
+  setUser: (name: string, email: string) => Promise<void>;
+  completeOnboarding: () => Promise<void>;
   toggleRule: (ruleId: string) => void;
-  addPingo: (amount: number, rule: string) => void;
+  addPingo: (amount: number, rule: string) => Promise<void>;
   getProgress: () => number;
   getMilestone: () => number | null;
-  resetAccount: () => void;
+  resetAccount: () => Promise<void>;
 }
 
 const loadState = () => {
   try {
     const raw = localStorage.getItem('pingou-state');
     if (raw) return JSON.parse(raw);
-  } catch {}
+  } catch {
+    /* offline-safe */
+  }
   return {};
-};
-
-const saveState = (state: Partial<AppState>) => {
-  try {
-    const current = loadState();
-    localStorage.setItem('pingou-state', JSON.stringify({ ...current, ...state }));
-  } catch {}
 };
 
 const stored = loadState();
@@ -64,38 +55,40 @@ export const useAppStore = create<AppState>((set, get) => ({
   lastPingDate: stored.lastPingDate || null,
   history: stored.history || [],
 
-  setGoal: (name, amount) => {
+  setGoal: async (name, amount) => {
+    await api.saveGoal(name, amount);
     set({ goalName: name, goalAmount: amount });
-    saveState({ goalName: name, goalAmount: amount });
   },
 
-  setUser: (name, email) => {
+  setUser: async (name, email) => {
+    await api.createAccount(name, email);
     set({ userName: name, userEmail: email });
-    saveState({ userName: name, userEmail: email });
   },
 
-  completeOnboarding: () => {
+  completeOnboarding: async () => {
+    await api.saveRules(get().activeRules);
     set({ onboardingDone: true });
-    saveState({ onboardingDone: true });
   },
 
   toggleRule: (ruleId) => {
     const current = get().activeRules;
     const next = current.includes(ruleId)
-      ? current.filter(r => r !== ruleId)
+      ? current.filter((r) => r !== ruleId)
       : [...current, ruleId];
     set({ activeRules: next });
-    saveState({ activeRules: next });
   },
 
-  addPingo: (amount, rule) => {
+  addPingo: async (amount, rule) => {
     const today = new Date().toISOString().split('T')[0];
     const lastDate = get().lastPingDate;
     const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
-    
-    const newStreak = lastDate === yesterday || lastDate === today
-      ? (lastDate === today ? get().streak : get().streak + 1)
-      : 1;
+
+    const newStreak =
+      lastDate === yesterday || lastDate === today
+        ? lastDate === today
+          ? get().streak
+          : get().streak + 1
+        : 1;
 
     const entry: PingoEntry = {
       id: Date.now().toString(),
@@ -105,20 +98,16 @@ export const useAppStore = create<AppState>((set, get) => ({
     };
 
     const newTotal = get().totalSaved + amount;
-    const newHistory = [entry, ...get().history];
 
+    // Atualização otimista: funciona mesmo offline
     set({
       totalSaved: newTotal,
       streak: newStreak,
       lastPingDate: today,
-      history: newHistory,
+      history: [entry, ...get().history],
     });
-    saveState({
-      totalSaved: newTotal,
-      streak: newStreak,
-      lastPingDate: today,
-      history: newHistory,
-    });
+
+    await api.registerPingo(entry, { totalSaved: newTotal, streak: newStreak });
   },
 
   getProgress: () => {
@@ -136,12 +125,19 @@ export const useAppStore = create<AppState>((set, get) => ({
     return null;
   },
 
-  resetAccount: () => {
-    localStorage.removeItem('pingou-state');
+  resetAccount: async () => {
+    await api.deleteAccount();
     set({
-      goalName: '', goalAmount: 0, userName: '', userEmail: '',
-      onboardingDone: false, activeRules: [], totalSaved: 0,
-      streak: 0, lastPingDate: null, history: [],
+      goalName: '',
+      goalAmount: 0,
+      userName: '',
+      userEmail: '',
+      onboardingDone: false,
+      activeRules: [],
+      totalSaved: 0,
+      streak: 0,
+      lastPingDate: null,
+      history: [],
     });
   },
 }));

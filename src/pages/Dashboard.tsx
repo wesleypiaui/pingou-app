@@ -5,6 +5,7 @@ import ProgressRing from '@/components/ProgressRing';
 import StreakCounter from '@/components/StreakCounter';
 import CelebrationModal from '@/components/CelebrationModal';
 import { usePullToRefresh } from '@/hooks/usePullToRefresh';
+import { toast } from 'sonner';
 import { Droplets, RefreshCw } from 'lucide-react';
 
 const ruleAmounts: Record<string, number> = {
@@ -33,7 +34,10 @@ const Dashboard = () => {
 
   const handlePingo = (ruleId: string) => {
     const amount = ruleAmounts[ruleId] || 2;
-    addPingo(amount, ruleId);
+    void addPingo(amount, ruleId).catch(() =>
+      toast.error('Registrado offline — vamos sincronizar depois.')
+    );
+    toast.success(`Pingou! R$ ${amount.toFixed(2)} guardados 💧`);
     setJustPinged(true);
     setTimeout(() => setJustPinged(false), 600);
 

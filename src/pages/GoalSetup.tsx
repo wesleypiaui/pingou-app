@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import { useAppStore } from '@/store/useAppStore';
-import { Target, ArrowRight } from 'lucide-react';
+import { Target, ArrowRight, Loader2 } from 'lucide-react';
 
 const GoalSetup = () => {
   const navigate = useNavigate();
@@ -12,17 +13,43 @@ const GoalSetup = () => {
   const [goalAmount, setGoalAmount] = useState('');
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleGoalNext = () => {
-    if (!goalName.trim() || !goalAmount.trim()) return;
-    setGoal(goalName.trim(), parseFloat(goalAmount));
-    setStep('user');
+  const handleGoalNext = async () => {
+    if (!goalName.trim() || !goalAmount.trim() || loading) return;
+    const amount = parseFloat(goalAmount);
+    if (!amount || amount <= 0) {
+      toast.error('Informe um valor maior que zero.');
+      return;
+    }
+    setLoading(true);
+    try {
+      await setGoal(goalName.trim(), amount);
+      toast.success('Meta salva! 🎯');
+      setStep('user');
+    } catch {
+      toast.error('Não conseguimos salvar agora. Tente de novo.');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleFinish = () => {
-    if (!userName.trim() || !userEmail.trim()) return;
-    setUser(userName.trim(), userEmail.trim());
-    navigate('/rules-setup');
+  const handleFinish = async () => {
+    if (!userName.trim() || !userEmail.trim() || loading) return;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail.trim())) {
+      toast.error('Digite um e-mail válido.');
+      return;
+    }
+    setLoading(true);
+    try {
+      await setUser(userName.trim(), userEmail.trim());
+      toast.success('Cofre criado! 💰');
+      navigate('/rules-setup');
+    } catch {
+      toast.error('Não conseguimos criar seu cofre. Tente de novo.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -89,11 +116,11 @@ const GoalSetup = () => {
 
             <motion.button
               onClick={handleGoalNext}
-              disabled={!goalName.trim() || !goalAmount.trim()}
+              disabled={!goalName.trim() || !goalAmount.trim() || loading}
               className="mt-8 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-mint py-4 text-base font-bold text-primary-foreground shadow-mint disabled:opacity-40"
               whileTap={{ scale: 0.97 }}
             >
-              Próximo <ArrowRight className="h-5 w-5" />
+              {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <>Próximo <ArrowRight className="h-5 w-5" /></>}
             </motion.button>
           </motion.div>
         ) : (
@@ -138,11 +165,11 @@ const GoalSetup = () => {
 
             <motion.button
               onClick={handleFinish}
-              disabled={!userName.trim() || !userEmail.trim()}
-              className="mt-8 w-full rounded-2xl bg-gradient-mint py-4 text-base font-bold text-primary-foreground shadow-mint disabled:opacity-40"
+              disabled={!userName.trim() || !userEmail.trim() || loading}
+              className="mt-8 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-mint py-4 text-base font-bold text-primary-foreground shadow-mint disabled:opacity-40"
               whileTap={{ scale: 0.97 }}
             >
-              Criar meu cofre 💰
+              {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : 'Criar meu cofre 💰'}
             </motion.button>
 
             <button
