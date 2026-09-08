@@ -38,6 +38,21 @@ Para a construção desta PoC, o ambiente foi estruturado com as seguintes tecno
 * **Backend:** Node.js 
 * **Banco de Dados:** SQLite
 
+* ---
 
+## 🚀 Como executar o projeto
 
+### Pré-requisitos
+
+Para executar o Pingou localmente, é necessário ter instalado:
+
+- Node.js
+- npm
+
+### Frontend
+
+Na pasta raiz do projeto, instale as dependências:
+
+bash
+npm install
 
