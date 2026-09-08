@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useAppStore } from "@/store/useAppStore";
 import { useDarkMode } from "@/hooks/useDarkMode";
 import Landing from "./pages/Landing";
@@ -17,9 +17,13 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+const appTabPaths = ["/dashboard", "/history", "/settings"];
+
 const AppRoutes = () => {
   const { onboardingDone } = useAppStore();
+  const { pathname } = useLocation();
   useDarkMode();
+
 
   return (
     <>
@@ -33,7 +37,7 @@ const AppRoutes = () => {
         <Route path="/settings" element={onboardingDone ? <Settings /> : <Navigate to="/comecar" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {onboardingDone && <BottomTabs />}
+      {onboardingDone && appTabPaths.includes(pathname) && <BottomTabs />}
     </>
   );
 };
