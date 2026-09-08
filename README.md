@@ -39,21 +39,15 @@ Para a construção desta PoC, o ambiente foi estruturado com as seguintes tecno
 * **Banco de Dados:** SQLite
 
 ---
+
 ## 🚀 Como executar o projeto
 
-### Pré-requisitos
+Para executar o Pingou em seu computador, primeiro é necessário ter o Node.js e o npm instalados.
 
-Para executar o Pingou localmente, é necessário ter instalado:
+## 📁 Estrutura do projeto
 
-- Node.js
-- npm
-
-### Frontend
-
-Na pasta raiz do projeto, instale as dependências:
-
-```bash
-npm install
-
-* ---
+- `src/` — código-fonte do frontend desenvolvido em React
+- `public/` — arquivos públicos utilizados pela aplicação
+- `pingou_api/` — código responsável pelo backend da aplicação
+- `package.json` — dependências e scripts utilizados pelo projeto
 
