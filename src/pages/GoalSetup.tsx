@@ -84,11 +84,15 @@ const GoalSetup = () => {
 
             <div className="space-y-4">
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-muted-foreground uppercase tracking-wider">
-                  Nome do objetivo
-                </label>
-                <input
-                  type="text"
+                <label
+            htmlFor="goal-name"
+            className="mb-1.5 block text-xs font-bold text-muted-foreground uppercase tracking-wider"
+            >
+            Nome do objetivo
+            </label>
+            <input
+            id="goal-name"
+            type="text"
                   placeholder="Ex: Viagem, Curso, Fone novo..."
                   value={goalName}
                   onChange={(e) => setGoalName(e.target.value)}
@@ -96,15 +100,21 @@ const GoalSetup = () => {
                 />
               </div>
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-muted-foreground uppercase tracking-wider">
-                  Quanto quer guardar?
+                <label
+                htmlFor="goal-amount"
+                className="mb-1.5 block text-xs font-bold text-muted-foreground uppercase tracking-wider"
+                >
+                Quanto quer guardar?
                 </label>
                 <div className="relative">
                   <span className="absolute left-4 top-1/2 -translate-y-1/2 text-base font-bold text-muted-foreground">
                     R$
                   </span>
                   <input
-                    type="number"
+                  id="goal-amount"
+                  type="number"
+                  min="0.01"
+                  step="0.01"
                     placeholder="500,00"
                     value={goalAmount}
                     onChange={(e) => setGoalAmount(e.target.value)}
@@ -138,11 +148,16 @@ const GoalSetup = () => {
 
             <div className="space-y-4">
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-muted-foreground uppercase tracking-wider">
-                  Seu nome
+                <label
+               htmlFor="user-name"
+                className="mb-1.5 block text-xs font-bold text-muted-foreground uppercase tracking-wider"
+                >
+                Seu nome
                 </label>
                 <input
-                  type="text"
+                id="user-name"
+               type="text"
+               autoComplete="name"
                   placeholder="Como podemos te chamar?"
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
@@ -150,11 +165,16 @@ const GoalSetup = () => {
                 />
               </div>
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                <label
+                  htmlFor="user-email"
+                  className="mb-1.5 block text-xs font-bold text-muted-foreground uppercase tracking-wider"
+                  >
                   E-mail
-                </label>
-                <input
+                  </label>
+                  <input
+                  id="user-email"
                   type="email"
+                  autoComplete="email"
                   placeholder="seu@email.com"
                   value={userEmail}
                   onChange={(e) => setUserEmail(e.target.value)}
