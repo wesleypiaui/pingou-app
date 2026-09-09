@@ -103,22 +103,33 @@ const Dashboard = () => {
               Registrar economia
             </h2>
             <div className="space-y-2">
-              {activeRules.map((ruleId) => (
-                <motion.button
-                  key={ruleId}
-                  onClick={() => handlePingo(ruleId)}
-                  className="tap-target flex w-full items-center justify-between rounded-2xl bg-card px-5 py-4 shadow-sm active:bg-accent"
-                  whileTap={{ scale: 0.97 }}
-                >
-                  <span className="text-base font-bold text-foreground">
-                    {ruleLabels[ruleId] || ruleId}
-                  </span>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-mint shadow-mint">
-                    <Droplets className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                </motion.button>
-              ))}
-            </div>
+  {activeRules.length === 0 ? (
+    <div className="rounded-2xl border border-dashed border-border bg-card px-5 py-6 text-center">
+      <p className="text-sm font-bold text-foreground">
+        Nenhuma regra ativa ainda
+      </p>
+      <p className="mt-1 text-xs text-muted-foreground">
+        Ative uma regra de economia para começar a registrar seus pingos.
+      </p>
+    </div>
+  ) : (
+    activeRules.map((ruleId) => (
+      <motion.button
+        key={ruleId}
+        onClick={() => handlePingo(ruleId)}
+        className="tap-target flex w-full items-center justify-between rounded-2xl bg-card px-5 py-4 shadow-sm active:bg-accent"
+        whileTap={{ scale: 0.97 }}
+      >
+        <span className="text-base font-bold text-foreground">
+          {ruleLabels[ruleId] || ruleId}
+        </span>
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-mint shadow-mint">
+          <Droplets className="h-5 w-5 text-primary-foreground" />
+        </div>
+      </motion.button>
+         ))
+           )}
+          </div>
           </div>
 
           <AnimatePresence>
