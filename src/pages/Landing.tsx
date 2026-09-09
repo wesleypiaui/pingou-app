@@ -129,7 +129,7 @@ const Landing = () => (
             Sobre o Projeto
           </h3>
           <p className="text-sm text-muted-foreground">
-            Prova de Conceito desenvolvida pelo <strong className="text-foreground">Grupo 11 — Senac</strong>,
+            Prova de Conceito desenvolvida pelo <strong className="text-foreground">Grupo 05 — Senac</strong>,
             como parte do projeto integrador de desenvolvimento de soluções digitais.
           </p>
         </div>
@@ -138,15 +138,15 @@ const Landing = () => (
             Contato
           </h3>
           <a
-            href="mailto:grupo11.pingou@senac.br"
+            href="mailto:grupo05.pingou@senac.br"
             className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
           >
-            <Mail className="h-4 w-4" /> grupo11.pingou@senac.br
+            <Mail className="h-4 w-4" /> grupo05.pingou@senac.br
           </a>
         </div>
       </div>
       <p className="mx-auto mt-8 max-w-5xl text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Pingou · Grupo 11 — Senac. Todos os direitos reservados.
+        © {new Date().getFullYear()} Pingou · Grupo 05 — Senac. Todos os direitos reservados.
       </p>
     </footer>
   </div>
