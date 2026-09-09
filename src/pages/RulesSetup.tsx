@@ -72,6 +72,9 @@ const RulesSetup = () => {
             return (
               <motion.button
                 key={rule.id}
+                type="button"
+                aria-pressed={active}
+                aria-label={`${rule.title}: ${active ? 'ativada' : 'desativada'}`}
                 onClick={() => toggleRule(rule.id)}
                 className={`relative flex w-full items-start gap-4 rounded-2xl border-2 p-4 text-left transition-colors ${
                   active
@@ -99,7 +102,10 @@ const RulesSetup = () => {
                     animate={{ scale: 1 }}
                     transition={{ type: 'spring' }}
                   >
-                    <Check className="h-4 w-4 text-primary-foreground" />
+                    <Check
+                     aria-hidden="true"
+                     className="h-4 w-4 text-primary-foreground"
+                     />
                   </motion.div>
                 )}
               </motion.button>
